@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>TwentyEight</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Performance test of DOM manipulation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: "Helvetica Neue", Helvetica, sans-serif;
+      font-size: 14px;
+      color: #333;
+    }
+
+    #game {
+      display: flex;
+      flex-wrap: wrap;
+      width: 784px;
+      background-color: black;
+    }
+
+    #game div {
+      width: 28px;
+      height: 28px;
+    }
+
+    .Empty {
+      background-color: black;
+    }
+
+    .WallTopLeft {
+      background-image: url('wall.png');
+      background-position: 0px 0px;
+    }
+
+    .WallHorizontal {
+      background-image: url('wall.png');
+      background-position: -16px 0px;
+    }
+
+    .WallTopRight {
+      background-image: url('wall.png');
+      background-position: 28px 0px;
+    }
+
+    .WallVertical {
+      background-image: url('wall.png');
+      background-position: 0px -16px;
+    }
+
+    .WallBottomLeft {
+      background-image: url('wall.png');
+      background-position: 0px 28px;
+    }
+
+    .WallBottomRight {
+      background-image: url('wall.png');
+      background-position: 28px 28px;
+    }
+
+    .WallInternal {}
+
+    .Dot {
+      background-image: url('dot.png');
+    }
+
+    .PowerPill {
+      background-image: url('power_pill.png');
+    }
+  </style>
+
+  <script type="module" src="./index.js"></script>
+</head>
+
+<body>
+
+  <noscript>
+    <h2>This page contains webassembly and javascript content, please enable javascript in your browser.</h2>
+  </noscript>
+
+  <div id="game">
+
+  </div>
+
+
+</body>
+
+</html>
