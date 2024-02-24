@@ -5,7 +5,7 @@ use web_sys::Document;
 use web_sys::HtmlDivElement;
 
 // Initial grid layouto
-const GRID_INIT: [&str; 30] = [
+static GRID_INIT: [&str; 30] = [
     r#"/------------¬/------------¬"#,
     r#"|oooooooooooo||oooooooooooo|"#,
     r#"|o/--¬o/---¬o||o/---¬o/--¬o|"#,
