@@ -13,7 +13,8 @@ pub(crate) enum Cell {
     Dot,
     Blank,
     Empty,
-    GhostLair,
+    GateLeft,
+    GateRight,
     PowerPill,
     W(Wall),
 }
@@ -23,8 +24,9 @@ impl From<char> for Cell {
         match value {
             'o' => Self::Dot,
             ' ' => Self::Empty,
-            'L' => Self::GhostLair,
             'P' => Self::PowerPill,
+            'g' => Self::GateLeft,
+            'G' => Self::GateRight,
             '+' => Self::W(Wall::Internal),
             '|' => Self::W(Wall::Vertical),
             '¬' => Self::W(Wall::TopRight),

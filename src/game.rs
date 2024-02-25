@@ -4,8 +4,10 @@ use web_sys::console::log_1;
 use web_sys::Document;
 use web_sys::HtmlDivElement;
 
+use super::pacman::PacMan;
+
 // Initial grid layouto
-static GRID_INIT: [&str; 30] = [
+static GRID_INIT: [&str; 29] = [
     r#"/------------¬/------------¬"#,
     r#"|oooooooooooo||oooooooooooo|"#,
     r#"|o/--¬o/---¬o||o/---¬o/--¬o|"#,
@@ -18,10 +20,9 @@ static GRID_INIT: [&str; 30] = [
     r#"\----¬o|\--¬ || /--,|o/----,"#,
     r#"+++++|o|/--, \, \--¬|o|+++++"#,
     r#"+++++|o||          ||o|+++++"#,
-    r#"+++++|o||          ||o|+++++"#,
-    r#"-----,o\, LL    LL \,o\-----"#,
-    r#"      o   L      L   o      "#,
-    r#"-----¬o/¬ LLLLLLLL /¬o/-----"#,
+    r#"-----,o\, /--gG--¬ \,o\-----"#,
+    r#"      o   |      |   o      "#,
+    r#"-----¬o/¬ \------, /¬o/-----"#,
     r#"+++++|o||          ||o|+++++"#,
     r#"+++++|o|| /------¬ ||o|+++++"#,
     r#"/----,o\, \--¬/--, \,o\----¬"#,
@@ -40,18 +41,26 @@ static GRID_INIT: [&str; 30] = [
 
 #[derive(Debug, PartialEq)]
 pub(crate) struct Game {
-    pub(crate) grid: [Cell; 28 * 30],
+    pub(crate) grid: Grid,
+    pub(crate) pac_man: PacMan,
+    // TODO add monster state here.
 }
+
+#[derive(Debug, PartialEq)]
+pub(crate) struct Grid([Cell; 28 * 29]);
 
 impl Default for Game {
     fn default() -> Self {
-        GRID_INIT.into()
+        Self {
+            grid: GRID_INIT.into(),
+            pac_man: PacMan::default(),
+        }
     }
 }
 
-impl From<[&str; 30]> for Game {
-    fn from(value: [&str; 30]) -> Self {
-        let mut grid: [Cell; 28 * 30] = [Cell::Blank; 28 * 30];
+impl From<[&str; 29]> for Grid {
+    fn from(value: [&str; 29]) -> Self {
+        let mut grid: [Cell; 28 * 29] = [Cell::Blank; 28 * 29];
 
         // i - row identifiero
         // j - column identifier
@@ -62,7 +71,7 @@ impl From<[&str; 30]> for Game {
             }
         }
 
-        Self { grid }
+        Grid(grid)
     }
 }
 
@@ -74,12 +83,15 @@ impl Game {
         game_element: HtmlDivElement,
     ) -> Result<(), JsValue> {
         log_1(&JsValue::from("generate"));
-        for (i, cell) in self.grid.into_iter().enumerate() {
+        for (i, cell) in self.grid.0.into_iter().enumerate() {
             let cell_element = document.create_element("div").unwrap();
             cell_element.set_id(&i.to_string());
             cell_element.set_class_name(&cell.to_string());
             game_element.append_child(&cell_element)?;
         }
+
+        // Add actors.
+
         Ok(())
     }
 }

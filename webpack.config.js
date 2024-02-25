@@ -31,8 +31,9 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
         { from: 'index.html' },
-        { from: 'sprites/power_pill.png' },
         { from: 'sprites/dot.png' },
+        { from: 'sprites/gate.png' },
+        { from: 'sprites/power_pill.png' },
         { from: 'sprites/wall.png' },
 
       ]

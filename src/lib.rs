@@ -1,9 +1,9 @@
 mod cell;
 mod game;
+mod pacman;
 mod wall;
 
 use wasm_bindgen::prelude::wasm_bindgen;
-use wasm_bindgen::prelude::*;
 use wasm_bindgen::JsCast;
 use wasm_bindgen::JsValue;
 use web_sys::console::log_1;
@@ -35,7 +35,6 @@ fn run() -> Result<(), JsValue> {
     // window object.
     let window = web_sys::window().expect("no global `window` exists");
     let document = window.document().expect("should have a document on window");
-    let body = document.body().expect("document should have a body");
     let game_element: HtmlDivElement = document
         .get_element_by_id("game")
         .unwrap()
@@ -43,9 +42,13 @@ fn run() -> Result<(), JsValue> {
 
     // Manufacture the element we're gonna append
 
-    // Init game board.
+    // Initialise game board.
     let game = Game::default();
     let _ = game.generate(&document, game_element);
+
+    // Spawn actors.
+
+    // Attach listeners.
 
     Ok(())
 }
