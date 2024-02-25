@@ -1,8 +1,8 @@
 # TwentyEight
 
-Manupulating the DOM via rust, has proformance issues.
+Manupulating the DOM via rust, has preformance issues.
 
-This is a just a performance testbed. A simple game
+This is a just a testbed. A simple game
 where I explore the performance differences between code
 snippets built to change the DOM at speed.
 
