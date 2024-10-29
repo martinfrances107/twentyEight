@@ -2,7 +2,8 @@
 name = "twenty_eight"
 version = "0.1.0"
 edition = "2021"
-
+repository = "git@github.com:martinfrances107/twentyEight.git"
+description = "A platform to experiment with rust-browser performance issues."
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 

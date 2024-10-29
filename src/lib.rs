@@ -31,6 +31,7 @@ extern "C" {
 
 #[wasm_bindgen(start)]
 fn run() -> Result<(), JsValue> {
+    log(&"main run() entry");
     // Use `web_sys`'s global `window` function to get a handle on the global
     // window object.
     let window = web_sys::window().expect("no global `window` exists");
@@ -49,7 +50,7 @@ fn run() -> Result<(), JsValue> {
     // Spawn actors.
 
     // Attach listeners.
-
+    log(&"main exit");
     Ok(())
 }
 
